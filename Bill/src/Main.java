@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter size array : ");
+        System.out.print("Enter the number of customers : ");
         int size = scanner.nextInt();
         scanner.nextLine();
         BillManagement billManagement = new BillManagement(size);
@@ -20,30 +20,30 @@ public class Main {
             scanner.nextLine();
             switch (choice) {
                 case 1: {
-                    System.out.println("Enter Id home or id meter");
+                    System.out.print("Enter Id home or id meter : ");
                     String id = scanner.nextLine();
                     if (billManagement.findIndex(id) == -1) {
-                        System.out.println("Customer not found !!");
+                        System.out.println("CUSTOMER NOT FOUND !!\n");
                     } else if (billManagement.findIndex(id) != -1) {
                         System.out.println(bills[billManagement.findIndex(id)].toString());
-                        System.out.println("Electricity bill payment : " + bills[billManagement.findIndex(id)].electricBill() + "\n");
+                        System.out.println("TOTAL COST : " + bills[billManagement.findIndex(id)].electricBill() + "VND");
                         billManagement.deleteCustomer(id);
                     }
                     break;
                 }
                 case 2: {
-                    System.out.println("Enter Id home or id meter");
+                    System.out.print("Enter Id home or id meter : ");
                     String id = scanner.nextLine();
                     if (billManagement.findIndex(id) == -1) {
-                        System.out.println("Customer not found !!");
+                        System.out.println("CUSTOMER NOT FOUND !!\n");
                     } else if (billManagement.findIndex(id) != -1) {
-                        System.out.println("Find : " + bills[billManagement.findIndex(id)].toString());
+                        System.out.println("FIND: " + bills[billManagement.findIndex(id)].toString());
                     }
                     break;
                 }
                 case 3: {
                     billManagement.addCustommer(scanner);
-                    System.out.println("Add complete!");
+                    System.out.println("ADDED SUCCESS!\n");
                     break;
                 }
                 case 4: {
@@ -55,7 +55,7 @@ public class Main {
                     break;
                 }
                 default: {
-                    System.out.println("Please re-enter");
+                    System.out.println("PLEASE RE-ENTER\n");
                     break;
                 }
             }
@@ -63,10 +63,10 @@ public class Main {
         } while (choice != 0);
     }
     public static void menu() {
-        System.out.println("1: Payment/ Delete customer");
+        System.out.println("1: Checkout and delete customer");
         System.out.println("2: Check information customer");
-        System.out.println("3: Add customer");
-        System.out.println("4: All customer");
+        System.out.println("3: Add information customer");
+        System.out.println("4: All information customer");
         System.out.println("0: EXit");
     }
 }

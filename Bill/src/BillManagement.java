@@ -78,21 +78,7 @@ public class BillManagement {
         for (int i = 0; i < bills.length; i++) {
             newBills[i] = this.bills[i];
         }
-        System.out.println("NEW CUSTOMER INFORMATION");
-        System.out.print("Full name : ");
-        String name = scanner.nextLine();
-        System.out.print("Id home : ");
-        String idHome = scanner.nextLine();
-        System.out.print("Id Electric Meter : ");
-        String idMeter = scanner.nextLine();
-        Customer customer = new Customer(name, idHome, idMeter);
-        System.out.println("ELECTRIC BILL");
-        System.out.print("Old index electric : ");
-        int oldIndex = scanner.nextInt();
-        System.out.print("New index electric : ");
-        int newIndex = scanner.nextInt();
-        scanner.nextLine();
-        newBills[bills.length] = new Bill(customer, oldIndex, newIndex);
+        newBills[bills.length] = initBill(scanner);
         this.bills = newBills;
     }
 }
