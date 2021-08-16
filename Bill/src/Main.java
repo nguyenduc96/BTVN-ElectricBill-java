@@ -12,6 +12,10 @@ public class Main {
         for (int i = 0; i < size; i++) {
             bills[i] = billManagement.initBill(scanner);
         }
+        runProgram(scanner, billManagement, bills);
+    }
+
+    private static void runProgram(Scanner scanner, BillManagement billManagement, Bill[] bills) {
         int choice = -1;
         do {
             menu();
@@ -20,25 +24,11 @@ public class Main {
             scanner.nextLine();
             switch (choice) {
                 case 1: {
-                    System.out.print("Enter Id home or id meter : ");
-                    String id = scanner.nextLine();
-                    if (billManagement.findIndex(id) == -1) {
-                        System.out.println("CUSTOMER NOT FOUND !!\n");
-                    } else if (billManagement.findIndex(id) != -1) {
-                        System.out.println(bills[billManagement.findIndex(id)].toString());
-                        System.out.println("TOTAL COST : " + bills[billManagement.findIndex(id)].electricBill() + "VND");
-                        billManagement.deleteCustomer(id);
-                    }
+                    checkOutBill(scanner, billManagement, bills);
                     break;
                 }
                 case 2: {
-                    System.out.print("Enter Id home or id meter : ");
-                    String id = scanner.nextLine();
-                    if (billManagement.findIndex(id) == -1) {
-                        System.out.println("CUSTOMER NOT FOUND !!\n");
-                    } else if (billManagement.findIndex(id) != -1) {
-                        System.out.println("FIND: " + bills[billManagement.findIndex(id)].toString());
-                    }
+                    checkBillInfo(scanner, billManagement, bills);
                     break;
                 }
                 case 3: {
@@ -55,13 +45,36 @@ public class Main {
                     break;
                 }
                 default: {
-                    System.out.println("PLEASE RE-ENTER\n");
+                    System.out.println("FALSE !!! PLEASE RE-ENTER\n");
                     break;
                 }
             }
 
         } while (choice != 0);
     }
+
+    private static void checkBillInfo(Scanner scanner, BillManagement billManagement, Bill[] bills) {
+        System.out.print("Enter Id home or id meter : ");
+        String id = scanner.nextLine();
+        if (billManagement.findIndex(id) == -1) {
+            System.out.println("CUSTOMER NOT FOUND !!\n");
+        } else if (billManagement.findIndex(id) != -1) {
+            System.out.println("FIND: " + bills[billManagement.findIndex(id)].toString());
+        }
+    }
+
+    private static void checkOutBill(Scanner scanner, BillManagement billManagement, Bill[] bills) {
+        System.out.print("Enter Id home or id meter : ");
+        String id = scanner.nextLine();
+        if (billManagement.findIndex(id) == -1) {
+            System.out.println("CUSTOMER NOT FOUND !!\n");
+        } else if (billManagement.findIndex(id) != -1) {
+            System.out.println(bills[billManagement.findIndex(id)].toString());
+            System.out.println("TOTAL COST : " + bills[billManagement.findIndex(id)].electricBill() + " VND");
+            billManagement.deleteCustomer(id);
+        }
+    }
+
     public static void menu() {
         System.out.println("1: Checkout and delete customer");
         System.out.println("2: Check information customer");
